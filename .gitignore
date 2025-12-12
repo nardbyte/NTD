@@ -1,0 +1,19 @@
+# Server Logs
+server_log.txt
+
+# Binaries
+*.amx
+*.dll
+*.so
+*.exe
+*.db
+
+# Text Files
+*.txt
+
+# VSCode
+.vscode/
+
+# User Files (Optional - if you want to exclude personal saves)
+# scriptfiles/ntd/projects/*
+# scriptfiles/ntd/exports/*
