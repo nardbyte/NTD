@@ -6,7 +6,9 @@ server_log.txt
 
 # Text Files
 *.txt
-
-# User Files (Optional - if you want to exclude personal saves)
-# scriptfiles/ntd/projects/*
-# scriptfiles/ntd/exports/*
+# Proyects
+scriptfiles/ntd/projects/*
+# Exports
+scriptfiles/ntd/exports/*
+# Imports
+scriptfiles/ntd/imports/*

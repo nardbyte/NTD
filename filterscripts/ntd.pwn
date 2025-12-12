@@ -4859,24 +4859,28 @@ stock SaveProject()
 {
 	new file[300], stringex[128];
 
-	//Project List
-	format(file, sizeof file, PROJECTLIST_FILEPATH);
-	if(fexist(file))
-	{
-		new hour, minute, second, year, month, day;
-		gettime(hour, minute, second);
-		getdate(year, month, day);
-		//
-		format(EditorString, sizeof EditorString, "%s %i %i %i %i %i %i\n", NTD_User[User_ProjectName], Iter_Count(I_TEXTDRAWS), hour, minute, day, month, year);
-		ProjectFileLineReplace(file, NTD_User[User_ProjectName], EditorString);
-		GetAllProjects();
-	}
-
 	//Project File
 	format(file, sizeof file, PROJECTS_DIRECTORYPATH"/%s.ntdp", NTD_User[User_ProjectName]);
-	if(dfile_FileExists(file) && NTD_User[User_ProjectOpened])
+
+    // Import Fix: If file doesn't exist, create it and register in list.
+    if(!dfile_FileExists(file))
+    {
+        WriteIntoList(NTD_User[User_ProjectName]);
+    }
+    else
+    {
+        new hour, minute, second, year, month, day;
+        gettime(hour, minute, second);
+        getdate(year, month, day);
+        //
+        format(EditorString, sizeof EditorString, "%s %i %i %i %i %i %i\n", NTD_User[User_ProjectName], Iter_Count(I_TEXTDRAWS), hour, minute, day, month, year);
+        ProjectFileLineReplace(PROJECTLIST_FILEPATH, NTD_User[User_ProjectName], EditorString);
+        GetAllProjects();
+    }
+
+	if(NTD_User[User_ProjectOpened])
 	{
-		dfile_Delete(file);
+		if(dfile_FileExists(file)) dfile_Delete(file);
 		dfile_Create(file);
 		dfile_Open(file);
 		new count;
