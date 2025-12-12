@@ -4564,7 +4564,7 @@ stock OpenProjectDialog(playerid)
 						format(EditorString, sizeof EditorString, "{00FFFF}[PWN] {FFFFFF}%s\tImport\t-", line);
 						AddDialogListitem(playerid, EditorString);
 						count++;
-						printf("[NTD DEBUG] Added import item: %s", line);
+						//printf("[NTD DEBUG] Added import item: %s", line);
 					}
 				}
 				fclose(impFile);
